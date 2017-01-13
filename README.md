@@ -14,6 +14,7 @@ application, or by clicking Web Servers > Start All. Open the web app in your de
 browser by simply clicking on "Baltimore Restaurants Web App" or whichever name you gave
 your web server.
 
+<h3>Shown below are images showing how to set up Fenix web server</h3>
 <img src="/Images/FenixStep1.png" width="700" />
 <img src="/Images/FenixStep2.png" width="280" />
 <img src="/Images/FenixStep3.png" width="280" />
@@ -31,6 +32,7 @@ I'm using Bootstrap 3 to give the site some of it's key stylistic features, such
 navbar, the jumbotron image, and the inputs in the form.
 
 #Features
+<h3>Searching</h3>
 Searching is done using the 'filter' filter. Put a keyword, either the name of the
 restaurant, zip code, neighborhood, council district, police district, or the primary
 location address, into the search bar and all rows with matching values will be displayed.
