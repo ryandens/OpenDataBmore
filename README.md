@@ -14,10 +14,10 @@ application, or by clicking Web Servers > Start All. Open the web app in your de
 browser by simply clicking on "Baltimore Restaurants Web App" or whichever name you gave
 your web server.
 
-<img src="/Images/FenixStep1.png" width="250" height="250" />
-<img src="/Images/FenixStep2.png" width="250" height="250" />
-<img src="/Images/FenixStep3.png" width="250" height="250" />
-<img src="/Images/FenixStep4.png" width="250" height="250" />
+<img src="/Images/FenixStep1.png" width="350" height="350" />
+<img src="/Images/FenixStep2.png" width="350" height="350" />
+<img src="/Images/FenixStep3.png" width="350" height="350" />
+<img src="/Images/FenixStep4.png" width="350" height="350" />
 
 #How it works
 Currently, the application extracts the data from the JSON file from the data source,
