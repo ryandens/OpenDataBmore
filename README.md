@@ -14,7 +14,7 @@ application, or by clicking Web Servers > Start All. Open the web app in your de
 browser by simply clicking on "Baltimore Restaurants Web App" or whichever name you gave
 your web server.
 
-![StepOneImg](/Images/FenixStep1.png?raw=true "Step One")
+![StepOneImg](/Images/FenixStep1.png?raw=true "Step One" | width = 250)
 ![StepTwoImg](/Images/FenixStep2.png?raw=true "Step Two")
 ![StepThreeImg](/Images/FenixStep3.png?raw=true "Step Three")
 ![StepFourImg](/Images/FenixStep4.png?raw=true "Step Four")
