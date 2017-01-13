@@ -1,0 +1,13 @@
+.jumbotron{
+  background: url('/BaltimorePano.jpg') center center no-repeat;
+  height: 100%;
+  width: 100%;
+  padding-top: 30%;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#restaurantTable {
+  /*margin-left: 100px;*/
+
+}

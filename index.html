@@ -1,13 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="restaurants">
 <head>
 	<title></title>
-	<script src="/Scripts/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/Styles/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/Styles/Style.css"
 </head>
-<body>
-	<div ng-app="">
-	  <p>Name: <input type="text" ng-model="name"></p>
-	  <p ng-bind="name"></p>
+<body ng-controller = "HomeController as home">
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Restaurants</a>
+	    </div>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" ng-model="filterName">
+        </div>
+        <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+      </form>
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+		<div class="jumbotron">
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<table id="restaurantTable" class="table table-bordered">
+					<thead>
+						<th>Name</th>
+						<th>Zip code</th>
+						<th>Neighborhood</th>
+						<th>Council District</th>
+						<th>Police District</th>
+						<th>Primary Location</th>
+					</thead>
+					<tr ng-repeat="restaurant in home.restaurants | filter: filterName">
+						<td ng-repeat="attribute in restaurant">
+							{{attribute}}
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
+
+	<script src="/Scripts/angular.min.js"></script>
+	<script src="/Scripts/app.js"></script>
 </body>
 </html>
