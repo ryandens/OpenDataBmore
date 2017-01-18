@@ -1,53 +1,65 @@
 (function () {
   var app = angular.module('restaurants', []);
 
-  app.controller('HomeController', ['$http', function($http) {
+  app.controller('HomeController', ['$http', '$scope', function($http, $scope) {
     var home = this;
+    $scope.restaurants = [];
+    $scope.nameFilter = "";
+    console.log($scope.byThisColumn);
 
-    home.restaurants = [];
+    $scope.clearSearch = function () {
+        $scope.nameFilter = null;
+    };
+    // $scope.filterParam = 'test';
 
+
+    //variable to track the dropDownMenu
+    $scope.dropDownMenu = {
+      availableOptions: [
+        {id: '0', display: 'Name', model: 'nameOption'},
+        {id: '1', display: 'Zip Code'},
+        {id: '2', display: 'Neighborhood'},
+        {id: '3', display: 'Council District'},
+        {id: '4', display: 'Police District'},
+        {id: '5', display: 'Primary Address'},
+      ],
+      selectedOption: {id: '0', display: 'Name', model: 'nameOption'} //This sets the default value of the select in the ui
+    };
+
+
+    //constructor for restraunt object
+    function Restaurant(name, zip, rNeighborhood, cDistrict, pDistrict, primaryLoc) {
+        this.name = name;
+        this.zipCode = zip;
+        this.neighborhood = rNeighborhood;
+        this.councilDistrict = cDistrict;
+        this.policeDistrict = pDistrict;
+        this.primaryLocAddress = primaryLoc;
+    }
+
+    //Get data from JSON file
     $http.get('/data/Restaurants.json').then(function(success){
 
       var arr = success.data.data;
       var result = []
-      // var text = '{ "restaurants" : ['
-      //
-      //
-      // for (var i = 0; i < arr.length; i++) {
-      //     text += '{ "name":"'+ arr[i][8];
-      //     text += '", "zip":"' + arr[i][9];
-      //     text += '", "neighborhood":"' + arr[i][10];
-      //     text += '", "councilDistrict":"' + arr[i][11];
-      //     text += '", "policeDistrict":"' + arr[i][12];
-      //     var loc = JSON.parse(arr[i][13][0]);
-      //     text += '" , "primaryLocAddress":"' + loc.address + ' ' + loc.city + ', ' + loc.state + ' ' + arr[i][9];
-      //     if (i != (arr.length - 1)) {
-      //       text += '" },';
-      //     } else {
-      //       text += '" } ';
-      //     }
-      //
-      // }
-      // text += ']}';
-      //
-      // var jsonObject = JSON.parse(text);
-      // console.log(jsonObject);
 
       for(i = 0; i < arr.length; i++) {
-        temp = [];
-        for(j = 8; j < 14; j++) {
-          if(j != 13) {
-              temp.push(arr[i][j]);
-          } else {
-            var x = JSON.parse(arr[i][13][0]);
-            temp.push(x.address + ' ' + x.city + ', ' + x.state);
-          }
-
-        }
-        result.push(temp);
+        var add = JSON.parse(arr[i][13][0])
+        result.push(new Restaurant(arr[i][8], arr[i][9], arr[i][10],
+          arr[i][11], arr[i][12], add.address + ' ' + add.city + ', ' + add.state));
       }
-      home.restaurants = result;
+
+      $scope.restaurants = result;
     });
   }]);
+  //Function for the filter of the table
+  app.filter('searchFilter', function() {
+
+    // return function() {
+    //
+    // }
+
+  });
+
 
 })();
