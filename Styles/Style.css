@@ -12,6 +12,10 @@
 	color: white;
 }
 
+#graphsButton{
+	background-color: gray;
+	color: #fffafa;
+}
 
 /*Make table have a sticky header, looks ugly*/
 /*table {

@@ -10,6 +10,8 @@
 
     /*Model for the search field*/
     home.nameFilter;
+    home.viewGraphs = false;
+    home.graphFilter = 20;
 
     /*variable to track which value to order by*/
     home.orderByVar = {
@@ -82,8 +84,30 @@
       
     });
 
+    /*Displays charts with relevant data*/
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Work', home.graphFilter],
+        ['Eat',      2],
+        ['Commute',  2],
+        ['Watch TV', 2],
+        ['Sleep',    7]
+        ]);
+      var options = {
+        title: 'My Daily Activities'
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+
+
     
   }]);
 
 
 })();
+

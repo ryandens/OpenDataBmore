@@ -13,7 +13,7 @@
 	      		<a class="navbar-brand" href="#">Restaurants</a>
 	    	</div>
 
-      		<form class="navbar-form navbar-left">
+      		<form class="navbar-form navbar-left" ng-show="!home.viewGraphs">
 				<div class="form-group">
 					<select class="form-control" ng-options="option.display for option in dropDownMenu.availableOptions track by option.id" ng-model="dropDownMenu.selectedOption" ng-click="home.clearSearch()"></select>
 				</div>
@@ -32,9 +32,14 @@
 
 	<div class="container">
 		<div class="jumbotron"></div>
+		
 		<div class="row">
 			<div class="col-md-12">
-
+				<button id="graphsButton" class="form-control" ng-click="home.viewGraphs = !home.viewGraphs">{{home.viewGraphs ? 'View Table': 'View Graphs'}}</button>
+				<br/>
+			</div>
+<!-- 			Start Table View -->
+			<div class="col-md-12" ng-show="!home.viewGraphs">
 				<table id="restaurantTable" class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -56,11 +61,17 @@
 					<tr ng-repeat="restaurant in restaurants| filter: home.nameFilter | orderBy:(home.orderByVar.selectedOption.ascending?'+'+home.orderByVar.selectedOption.display:'-'+home.orderByVar.selectedOption.display)">
 						<td ng-repeat="attribute in restaurant">
 							{{attribute}}
-							
 						</td>
 					</tr>
 				</table>
 			</div>
+<!-- 			End Table View -->
+
+<!-- 			Start Graph View -->
+			<div class="col-lg-12" ng-show="home.viewGraphs">
+				
+			</div>
+<!-- 			End Graph View -->
 		</div>
 	</div>
 
