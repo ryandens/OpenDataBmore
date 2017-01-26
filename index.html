@@ -3,7 +3,8 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="/Styles/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="/Styles/Style.css"
+	<link rel="stylesheet" type="text/css" href="/Styles/Style.css"/>
+	<link rel="stylesheet" type="text/css" href="/Styles/font-awesome.min.css">
 </head>
 <body ng-controller = "HomeController as home">
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -33,18 +34,29 @@
 		<div class="jumbotron"></div>
 		<div class="row">
 			<div class="col-md-12">
-				<table id="restaurantTable" class="table table-bordered">
+
+				<table id="restaurantTable" class="table table-bordered table-striped">
 					<thead>
-						<th>Name</th>
-						<th>Zip code</th>
-						<th>Neighborhood</th>
-						<th>Council District</th>
-						<th>Police District</th>
-						<th>Primary Location</th>
+						<tr>
+							<th ng-repeat="option in home.orderByVar.availableOptions track by $index">
+								<button class="form-control" ng-class="{selected: $index == home.orderByVar.selectedOption.id}" ng-click="home.myOrderBy($index)">
+									<i class="fa" ng-class="{'fa-arrow-down': !option.ascending, 'fa-arrow-up': option.ascending}" aria-hidden="true"></i>
+								</button>
+							</th>
+						<tr>
+						<tr>
+							<th>Name</th>
+							<th>Zip code</th>
+							<th>Neighborhood</th>
+							<th>Council District</th>
+							<th>Police District</th>
+							<th>Primary Location</th>
+						<tr>
 					</thead>
-					<tr ng-repeat="restaurant in restaurants| filter: home.nameFilter">
+					<tr ng-repeat="restaurant in restaurants| filter: home.nameFilter | orderBy:(home.orderByVar.selectedOption.ascending?'+'+home.orderByVar.selectedOption.display:'-'+home.orderByVar.selectedOption.display)">
 						<td ng-repeat="attribute in restaurant">
 							{{attribute}}
+							
 						</td>
 					</tr>
 				</table>

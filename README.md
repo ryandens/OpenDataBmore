@@ -33,6 +33,23 @@ navbar, the jumbotron image, and the inputs in the form.
 
 #Features
 <h3>Searching</h3>
-Searching is done using the 'filter' filter. Put a keyword, either the name of the
-restaurant, zip code, neighborhood, council district, police district, or the primary
-location address, into the search bar and all rows with matching values will be displayed.
+Searching is done using the 'filter' filter. Using a drop down menu, pick the column you would 
+like to search for your key word in, or pick all to have the search look in all columns.
+Put a keyword, either the name of therestaurant, zip code, neighborhood, council district, 
+police district, or the primary location address, into the search bar and all rows with matching 
+values will be displayed.
+<br/>
+<h3>Sorting/Ordering the data (Grid Control)</h3>
+Using the buttons above each of the headers, sort the data, either ascending or descending,
+according to a specific column. The current column being ordered by will have the green button.
+The direction of the arrow on the button indicates whether it is being sorted in ascending or
+descending order. An up arow means ascending order and a down arrow means descending order.
+All are defaulted to be in ascending order. To change the whether the current column 
+being ordered by is ascending or descending, simply click on it again.
+<br/>
+This currently has a bug in it, though it is minor and still usable. When the page first loads,
+if you try to change whether the first column (default) is ascending/descending, the arrow will
+not reflect that change, though the ordering of the rows in the table will. I have not figured
+out a solution yet.
+
+

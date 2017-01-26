@@ -11,6 +11,19 @@
     /*Model for the search field*/
     home.nameFilter;
 
+    /*variable to track which value to order by*/
+    home.orderByVar = {
+      availableOptions: [
+        {id: '0', display: 'name', ascending: true},
+        {id: '1', display: 'zipCode', ascending: true},
+        {id: '2', display: 'neighborhood', ascending: true},
+        {id: '3', display: 'councilDistrict', ascending: true},
+        {id: '4', display: 'policeDistrict', ascending: true},
+        {id: '5', display: 'primaryLocAddress', ascending: true},
+      ],
+      selectedOption: {id: '0', display: 'name', ascending: true} //This sets the default value of the select in the ui
+    };
+
     /*variable to track the dropDownMenu */
     $scope.dropDownMenu = {
       availableOptions: [
@@ -27,11 +40,19 @@
 
     /*Function that clears the input fields*/
     home.clearSearch = function () {
-
         for (var x in home.nameFilter) {
-          home.nameFilter[x] = "";
+            home.nameFilter[x] = "";
         }
     };
+
+    /*Function that changes orderByVar as needed to update view*/
+    home.myOrderBy = function(index) {
+        if(index == home.orderByVar.selectedOption.id) {
+            home.orderByVar.selectedOption.ascending = !home.orderByVar.selectedOption.ascending;
+        } else {
+          home.orderByVar.selectedOption = home.orderByVar.availableOptions[index];
+        }
+    }
 
     /*constructor for restraunt object */
     function Restaurant(name, zip, rNeighborhood, cDistrict, pDistrict, primaryLoc) {

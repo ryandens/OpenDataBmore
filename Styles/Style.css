@@ -7,7 +7,42 @@
   margin-bottom: 0;
 }
 
-#restaurantTable {
-  /*margin-left: 100px;*/
-
+.selected {
+	background-color: green;
+	color: white;
 }
+
+
+/*Make table have a sticky header, looks ugly*/
+/*table {
+	width: 100%;
+}
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+	content: ' ';
+	display: block;
+	visibility: hidden;
+	clear: both;
+}
+
+thead th {
+	height: 100%;
+	text-align: left;
+}
+
+tbody {
+	height: 500px;
+    overflow-y: auto;
+ }
+
+
+
+tbody td, thead th {
+	width: 16.66666667%;
+	float: left;
+}
+
+tbody td {
+	white-space: pre-wrap;
+}*/
