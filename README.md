@@ -67,7 +67,7 @@ the button of the view and pressing the 'search' function. In the image below, t
 neighborhood chart is being filtered by the zip code 21218. The chart shows that 36.23%
 of restaurants in the 21218 zip code are in Charles Village.
 
-<img src="/Images/GraphFilter.png" width="700" />
+<img src="/Images/graphFilter.png" width="700" />
 
 
 
