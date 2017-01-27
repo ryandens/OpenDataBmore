@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="/Scripts/app.js"></script>
 </head>
 <body ng-controller = "HomeController as home">
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
 	      		<a class="navbar-brand" href="#">Restaurants</a>
@@ -73,23 +73,46 @@
 		<section ng-show="home.viewGraphs">
 			<div ng-controller="GraphsController as graphs" class="row">
 				
-				<div ng-repeat="option in graphs.graphOptions.availableOptions track by $index" class="col-md-3">
-					<p><a class="btn btn-default" ng-class="{selected: $index == graphs.graphOptions.selectedOption.id}" ng-click="graphs.calculateData($index)">View {{option.display + " Statistics"}}</a></p>
+				<div ng-repeat="option in graphs.graphOptions.availableOptions track by $index" class="col-md-2">
+					<button class="form-control" ng-class="{selected: $index == graphs.graphOptions.selectedOption.id}" ng-click="graphs.loadGraph($index)">{{option.display}}</button>
 				</div>
-				<div ng-hide="graphs.graphOptions.selectedOption.id == -1">
+				<br/>
+				<br/>
+				<div ng-hide="graphs.showLandingPage">
 					<fusioncharts
 						width="600"
 						height="400"
 	   					type="pie3d"
 	   					dataSource="{{graphs.formattedData}}" >
 					</fusioncharts>
+
+					<form>
+						<div class="form-group col-md-4">
+							<label>First select parameter to search by</label>
+							<select class="form-control" 
+								ng-options="option.display disable when option.id == '4' || option.id == graphs.graphOptions.selectedOption.id for option in graphs.graphOptions.availableOptions track by option.id" 
+								ng-model="graphs.graphFilterCol" 
+								ng-click="">
+							</select>
+						</div>
+						<div class="form-group col-md-4">
+							<label>Next, enter search parameter </label>
+							<input class="form-control" type="text" ng-model="graphs.graphFilter">
+						</div>
+						<div class="form-group col-md-4">
+							<label>Then, search!</label>
+							<button id="graphSearchButton" class="form-control" ng-click="graphs.calculateData(graphs.graphFilterCol.id, graphs.graphFilter)">Search</button>
+						</div>
+					</form>
+
 				</div>
 			
-				<div ng-show="graphs.graphOptions.selectedOption.id == -1">
+				<div ng-show="graphs.showLandingPage">
 					<h2>Restaurant Statistics</h2>
 					<p>On this portion of the applicaton, you can view statistics about where restaurants are in the Baltimore, show by percentage on pie graphs using Fusion Charts.
 					Neighborhood statistics show the percent of the total number of restaurants in each neighborhood. Same for zip code, council district, and police district.</p>
 				</div>
+
 
 			</div>	
 		</section>

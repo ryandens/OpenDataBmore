@@ -55,6 +55,19 @@ This currently has a bug in it, though it is minor and still usable. When the pa
 if you try to change whether the first column (default) is ascending/descending, the arrow will
 not reflect that change, though the ordering of the rows in the table will. Once you have ordered 
 by another column, the arrows swich direction as intended I have not figured out a solution yet.
+<h3>Visualization</h3>
+There are four pie charts which were made using Fusion Charts, referenced below in the external
+resources section. You can view the percentage of the total number of restaurants that are in 
+each neighborhood, zip code, council district, or police district of Baltimore. This was not
+developed in the most ideal way, beacase Fusion Charts does not support filtering of the data, 
+so the charts take a little long to load, espcially the neighborhood chart.
+<br/>
+Additionally, users can filter the data being sent to the chart by filing out the form at 
+the button of the view and pressing the 'search' function. In the image below, the 
+neighborhood chart is being filtered by the zip code 21218. The chart shows that 36.23%
+of restaurants in the 21218 zip code are in Charles Village.
+
+<img src="Images/GraphFilter.png" width="700" />
 
 
 
