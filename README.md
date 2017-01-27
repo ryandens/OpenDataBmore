@@ -5,14 +5,18 @@ A basic web app displaying data restaurant data from Open Data Baltimore using A
 [Data Source](https://data.baltimorecity.gov/Culture-Arts/Restaurants/k5ry-ef3g)
 
 #Setup
-Use your favorite Web Server application to host Baltimore Restaurants. I used[Fenix Web Server](http://www.fenixwebserver.com/) 
-to get a server running. Open the application then click Web Servers > New. Give the project 
-a descriptive name (perhaps, Baltimore Restaurants Web App), put in the path to the root directory 
-of the project (where index.html is located), ensurethe suggested port is available, then click 
-'Create'. Start the web server by clicking the'Play' button on the right hand side of the 
-Baltimore Restaurants Web App in the Fenixapplication, or by clicking Web Servers > Start All. 
-Open the web app in your default browser by simply clicking on "Baltimore Restaurants Web App" 
-or whichever name you gave your web server.
+Use your favorite Web Server application to host Baltimore Restaurants.
+
+One option is using npm. 
+
+
+I used[Fenix Web Server](http://www.fenixwebserver.com/) to get a server running. Open the 
+application then click Web Servers > New. Give the project a descriptive name (perhaps, Baltimore 
+Restaurants Web App), put in the path to the root directory of the project (where index.html is located), 
+ensurethe suggested port is available, then click 'Create'. Start the web server by clicking 
+the'Play' button on the right hand side of the Baltimore Restaurants Web App in the Fenixapplication, 
+or by clicking Web Servers > Start All. Open the web app in your default browser by simply clicking 
+on "Baltimore Restaurants Web App" or whichever name you gave your web server.
 
 <br/>
 Alternatively, use your favorite application for hosting webapps. 

@@ -1,0 +1,19 @@
+{
+  "name": "restaurantapp",
+  "version": "1.0.0",
+  "description": "Author: Ryan Dens\r A basic web app displaying data restaurant data from Open Data Baltimore using AngularJS.\r <br/>\r [Data Source](https://data.baltimorecity.gov/Culture-Arts/Restaurants/k5ry-ef3g)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryandens/OpenDataBmore.git"
+  },
+  "author": "Ryan Dens",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryandens/OpenDataBmore/issues"
+  },
+  "homepage": "https://github.com/ryandens/OpenDataBmore#readme"
+}
