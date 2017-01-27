@@ -1,7 +1,7 @@
 # Baltimore Restaurants
 Author: Ryan Dens
 A basic web app displaying data restaurant data from Open Data Baltimore using AngularJS.
-\n
+<br/>
 [Data Source](https://data.baltimorecity.gov/Culture-Arts/Restaurants/k5ry-ef3g)
 
 #Setup
@@ -67,29 +67,25 @@ the button of the view and pressing the 'search' function. In the image below, t
 neighborhood chart is being filtered by the zip code 21218. The chart shows that 36.23%
 of restaurants in the 21218 zip code are in Charles Village.
 
-<img src="Images/GraphFilter.png" width="700" />
+<img src="/Images/GraphFilter.png" width="700" />
+
 
 
 
 #External Resources
-<div>
-	<h5>[Bootstrap 3](http://getbootstrap.com/)</h5>
-	<p>As stated before, I used Bootstrap 3 to make the site more repsonsive.</p>
-	<p>Note that I did not use bootstrap.js, just bootstrap.min.css, located in /Styles/</p>
-
-	<br/>
-
-	<h5>[Angular 1.6.1](https://angularjs.org/)</h5>
-	<p>Located in the Scripts folder.</p>
-
-	<br/>
-
-	<h5>[Fusion Charts](http://www.fusioncharts.com/) and [Angular-FusionCharts](http://fusioncharts.github.io/angular-fusioncharts/#/demos/ex1)</h5>
-	<p>Fusion Charts and the Angular-FusionCharts plugin are used in conjunction to display the graphs, allowing me to have the charts have the same two-way data binding as the rest of the application</p>
-	<p>The files relevat to this are fusioncharts.js, fusioncharts.charts.js, and angular-fusioncharts.min.js</p>
-
-	<h5>[Font Awesome](http://fontawesome.io/)</h5>
-	<p>Used for various icons, font-awesome.min.css is located in the 'Styles' folder. The fonts are in the 'fonts' folder</p>
-</div>
+[Bootstrap 3](http://getbootstrap.com/)
+As stated before, I used Bootstrap 3 to make the site more repsonsive. Note that I did not 
+use bootstrap.js, just bootstrap.min.css, located in /Styles/
+<br/>
+[Angular 1.6.1](https://angularjs.org/)
+Located in the Scripts folder
+<br/>
+[Fusion Charts](http://www.fusioncharts.com/) and [Angular-FusionCharts](http://fusioncharts.github.io/angular-fusioncharts/#/demos/ex1)
+Fusion Charts and the Angular-FusionCharts plugin are used in conjunction to display the graphs, 
+allowing me to have the charts have the same two-way data binding as the rest of the application
+The files relevat to this are fusioncharts.js, fusioncharts.charts.js, and angular-fusioncharts.min.js
+<br/>
+[Font Awesome](http://fontawesome.io/)
+Used for various icons, font-awesome.min.css is located in the 'Styles' folder. The fonts are in the 'fonts' folder.
 
 
