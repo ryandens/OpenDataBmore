@@ -5,10 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="/Styles/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/Styles/Style.css"/>
 	<link rel="stylesheet" type="text/css" href="/Styles/font-awesome.min.css">
-	<script type="text/javascript" src="/Scripts/angular.min.js"></script>
-	<script type="text/javascript" src="/Scripts/angular-fusioncharts.min.js"></script>
-	<script type="text/javascript" src="/Scripts/fusioncharts.js"></script>
-	<script type="text/javascript" src="/Scripts/app.js"></script>
+
 </head>
 <body ng-controller = "HomeController as home">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -23,12 +20,11 @@
 				</div>
 
 		        <div class="form-group">
-		          	<input type="text" class="form-control" placeholder="Search by name..." ng-model="home.nameFilter.name" ng-show="dropDownMenu.selectedOption.id == 0" />
-			      	<input type="text" class="form-control" placeholder="Search by zip code..." ng-model="home.nameFilter.zipCode" ng-show="dropDownMenu.selectedOption.id == 1" ng-click="home.clearSearch()"/>
-					<input type="text" class="form-control" placeholder="Search by neighborhood..." ng-model="home.nameFilter.neighborhood" ng-show="dropDownMenu.selectedOption.id == 2"/>
-					<input type="text" class="form-control" placeholder="Search by council district..." ng-model="home.nameFilter.councilDistrict" ng-show="dropDownMenu.selectedOption.id == 3"/>
-					<input type="text" class="form-control" placeholder="Search by police district..." ng-model="home.nameFilter.policeDistrict" ng-show="dropDownMenu.selectedOption.id == 4"/>
-					<input type="text" class="form-control" placeholder="Search by primary location address..." ng-model="home.nameFilter.primaryLocAddress" ng-show="dropDownMenu.selectedOption.id == 5"/>
+		        	<input type="text" 
+		        		class="form-control"
+		        		ng-repeat="input in dropDownMenu.availableOptions track by $index"
+		        		ng-show="dropDownMenu.selectedOption.id == $index"
+		        		ng-model="home.nameFilter[input.colName]">
 		        </div>
       		</form>
 	  </div>
@@ -76,7 +72,9 @@
 			<div ng-controller="GraphsController as graphs" class="row">
 				
 				<div ng-repeat="option in graphs.graphOptions.availableOptions track by $index" class="col-md-2">
-					<button class="form-control" ng-class="{selected: $index == graphs.graphOptions.selectedOption.id}" ng-click="graphs.loadGraph($index)">{{option.display}}</button>
+					<button class="form-control" 
+						ng-class="{selected: $index == graphs.graphOptions.selectedOption.id}" 
+						ng-click="graphs.loadGraph($index)">{{option.display}}</button>
 				</div>
 				<br/>
 				<br/>
@@ -120,6 +118,16 @@
 		</section>
 		
 	</div>
+	
+	<script type="text/javascript" src="/Scripts/angular.min.js"></script>
+	<script type="text/javascript" src="/Scripts/angular-fusioncharts.min.js"></script>
+	<script type="text/javascript" src="/Scripts/fusioncharts.js"></script>
+
+	<script type="text/javascript" src="/Scripts/app.js"></script>
+	<script type="text/javascript" src="/Scripts/Controllers/restaurantService.js"></script>
+	<script type="text/javascript" src="/Scripts/Controllers/homeController.js"></script>
+	<script type="text/javascript" src="/Scripts/Controllers/tableController.js"></script>
+	<script type="text/javascript" src="/Scripts/Controllers/graphsController.js"></script>
 
 	
 
