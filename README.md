@@ -9,6 +9,30 @@ Use your favorite Web Server application to host Baltimore Restaurants.
 
 One option is using npm. 
 
+1. First intall nodejs on your computer
+
+2. Next, clone this repository with the following command:
+
+	git clone https://github.com/ryandens/OpenDataBmore.git
+
+3. Navigate to the root directory of the OpenDataBmore Project
+	
+	cd ~/path/to/OpenDataBmore
+
+4. Install http-server 
+
+	npm install http-server -g
+
+5. Run the server
+	
+	http-server
+
+6. Navigate to one of the available ports. [Click here](http://127.0.0.1:8080) to go the default port. 
+Alternativey, simply type the URL into your browswer
+
+
+
+
 
 I used[Fenix Web Server](http://www.fenixwebserver.com/) to get a server running. Open the 
 application then click Web Servers > New. Give the project a descriptive name (perhaps, Baltimore 
