@@ -14,12 +14,16 @@ Baltimore Restaurants Web App in the Fenixapplication, or by clicking Web Server
 Open the web app in your default browser by simply clicking on "Baltimore Restaurants Web App" 
 or whichever name you gave your web server.
 
+<br/>
+Alternatively, use your favorite application for hosting webapps. 
+<br/>
 
 <h3>Shown below are images showing how to set up Fenix web server</h3>
 <img src="/Images/FenixStep1.png" width="700" />
 <img src="/Images/FenixStep2.png" width="280" />
 <img src="/Images/FenixStep3.png" width="280" />
 <img src="/Images/FenixStep4.png" width="280" />
+
 
 #How it works
 Currently, the application extracts the data from the JSON file from the data source,
@@ -38,10 +42,9 @@ navbar, the jumbotron image, and the inputs in the form.
 #Features
 <h3>Searching/Filtering</h3>
 Searching is done using the 'filter' filter. Using a drop down menu, pick the column you would 
-like to search for your key word in, or pick all to have the search look in all columns.
-Put a keyword, either the name of therestaurant, zip code, neighborhood, council district, 
-police district, or the primary location address, into the search bar and all rows with matching 
-values will be displayed.
+like to search for your key word in. Put a keyword, either the name of therestaurant, zip code, 
+neighborhood, council district, police district, or the primary location address, into the search 
+bar and all rows with matching values will be displayed.
 <br/>
 <h3>Sorting/Ordering the data (Grid Control)</h3>
 Using the buttons above each of the headers, sort the data, either ascending or descending,
@@ -66,6 +69,8 @@ Additionally, users can filter the data being sent to the chart by filing out th
 the button of the view and pressing the 'search' function. In the image below, the 
 neighborhood chart is being filtered by the zip code 21218. The chart shows that 36.23%
 of restaurants in the 21218 zip code are in Charles Village.
+<br/>
+Finally, the address of the primary location in the table view is a google maps link to the address
 
 <img src="/Images/graphFilter.PNG" width="900" />
 
@@ -88,4 +93,9 @@ The files relevat to this are fusioncharts.js, fusioncharts.charts.js, and angul
 [Font Awesome](http://fontawesome.io/)
 Used for various icons, font-awesome.min.css is located in the 'Styles' folder. The fonts are in the 'fonts' folder.
 
+
+
+#Demo
+Here is a demnonstration of the app in a GIF, recorded with [LiceCap](http://www.cockos.com/licecap/)
+<img src="/Images/demo.gif" width="600" />
 

@@ -51,7 +51,7 @@
     home.nameFilter;
 
     /*Model for which view is shown*/
-    home.viewGraphs = true;
+    home.viewGraphs = false;
     
     /*variable to track the dropDownMenu */
     $scope.dropDownMenu = {
@@ -72,6 +72,10 @@
             home.nameFilter[x] = "";
         }
     };
+
+    home.googleMaps = function() {
+        return '<a>Test</a>';
+    }
 
   }]);
 
@@ -240,12 +244,6 @@
         }
 
 
-
-    };
-
-
-
-    graphs.search = function(colIndex, param) {
 
     };
 

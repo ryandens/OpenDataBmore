@@ -61,8 +61,10 @@
 							<tr>
 						</thead>
 						<tr ng-repeat="restaurant in table.restaurants| filter: home.nameFilter | orderBy:(table.orderByVar.selectedOption.ascending?'+'+table.orderByVar.selectedOption.display:'-'+table.orderByVar.selectedOption.display)">
-							<td ng-repeat="attribute in restaurant">
-								{{attribute}}
+							<td ng-repeat="attribute in restaurant track by $index"
+								ng-switch on="$index">
+								<p ng-switch-when="0|1|2|3|4" ng-switch-when-separator="|">{{attribute}}</p>
+								<a ng-switch-when="5" href="http://maps.google.com/?q={{attribute}}">{{attribute}}</a>
 							</td>
 						</tr>
 					</table>
