@@ -24,7 +24,8 @@
 		        		class="form-control"
 		        		ng-repeat="input in dropDownMenu.availableOptions track by $index"
 		        		ng-show="dropDownMenu.selectedOption.id == $index"
-		        		ng-model="home.nameFilter[input.colName]">
+		        		ng-model="home.nameFilter[input.colName]"
+		        		placeholder="Enter {{input.display}}...">
 		        </div>
       		</form>
 	  </div>
