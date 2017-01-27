@@ -57,3 +57,26 @@ not reflect that change, though the ordering of the rows in the table will. Once
 by another column, the arrows swich direction as intended I have not figured out a solution yet.
 
 
+
+#External Resources
+<div>
+	<h5>[Bootstrap 3](http://getbootstrap.com/)</h5>
+	<p>As stated before, I used Bootstrap 3 to make the site more repsonsive.</p>
+	<p>Note that I did not use bootstrap.js, just bootstrap.min.css, located in /Styles/</p>
+
+	<br/>
+
+	<h5>[Angular 1.6.1](https://angularjs.org/)</h5>
+	<p>Located in the Scripts folder.</p>
+
+	<br/>
+
+	<h5>[Fusion Charts](http://www.fusioncharts.com/) and [Angular-FusionCharts](http://fusioncharts.github.io/angular-fusioncharts/#/demos/ex1)</h5>
+	<p>Fusion Charts and the Angular-FusionCharts plugin are used in conjunction to display the graphs, allowing me to have the charts have the same two-way data binding as the rest of the application</p>
+	<p>The files relevat to this are fusioncharts.js, fusioncharts.charts.js, and angular-fusioncharts.min.js</p>
+
+	<h5>[Font Awesome](http://fontawesome.io/)</h5>
+	<p>Used for various icons, font-awesome.min.css is located in the 'Styles' folder. The fonts are in the 'fonts' folder</p>
+</div>
+
+

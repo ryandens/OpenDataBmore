@@ -1,31 +1,58 @@
 (function () {
-  var app = angular.module('restaurants', []);
+  var app = angular.module('restaurants', ['ng-fusioncharts']);
 
+  app.service('restaurantService', function($http) {
+    this.filePath = '/data/Restaurants.json';
+    this.test;
+    this.restaurants;
+
+    /*constructor for restraunt object */
+    function Restaurant(name, zip, rNeighborhood, cDistrict, pDistrict, primaryLoc) {
+        this.name = name;
+        this.zipCode = zip;
+        this.neighborhood = rNeighborhood;
+        this.councilDistrict = cDistrict;
+        this.policeDistrict = pDistrict;
+        this.primaryLocAddress = primaryLoc;
+    }
+
+    /*Gets data from JSON file and returns it */ 
+    this.getData = function() {
+        var result = [];
+        $http.get(this.filePath).then(function(success){
+
+          var arr = success.data.data;
+          
+          for(i = 0; i < arr.length; i++) {
+            var add = JSON.parse(arr[i][13][0])
+            result.push(new Restaurant(arr[i][8], arr[i][9], arr[i][10],
+              arr[i][11], arr[i][12], add.address + ' ' + add.city + ', ' + add.state));
+          }
+          
+        });
+        this.restaurants = result;
+        return result;
+    };
+
+    this.getData();
+  });
+
+
+
+
+
+
+  
   app.controller('HomeController', ['$http', '$scope', function($http, $scope) {
     /*variable representing home controller*/
     var home = this;
-
-    /*array storing restaurant data from JSON file*/
-    $scope.restaurants = [];
-
+    
     /*Model for the search field*/
     home.nameFilter;
-    home.viewGraphs = false;
-    home.graphFilter = 20;
 
-    /*variable to track which value to order by*/
-    home.orderByVar = {
-      availableOptions: [
-        {id: '0', display: 'name', ascending: true},
-        {id: '1', display: 'zipCode', ascending: true},
-        {id: '2', display: 'neighborhood', ascending: true},
-        {id: '3', display: 'councilDistrict', ascending: true},
-        {id: '4', display: 'policeDistrict', ascending: true},
-        {id: '5', display: 'primaryLocAddress', ascending: true},
-      ],
-      selectedOption: {id: '0', display: 'name', ascending: true} //This sets the default value of the select in the ui
-    };
-
+    /*Model for which view is shown*/
+    home.viewGraphs = true;
+    
     /*variable to track the dropDownMenu */
     $scope.dropDownMenu = {
       availableOptions: [
@@ -39,7 +66,6 @@
       selectedOption: {id: '0', display: 'Name'} //This sets the default value of the select in the ui
     };
 
-
     /*Function that clears the input fields*/
     home.clearSearch = function () {
         for (var x in home.nameFilter) {
@@ -47,66 +73,132 @@
         }
     };
 
+  }]);
+
+
+
+
+
+
+
+
+
+  app.controller('TableController', function(restaurantService) {
+    /*Variable representing table controller*/
+    var table = this;
+
+     /*array storing restaurant data from JSON file*/
+    table.restaurants = restaurantService.restaurants;
+    
+    /*Array of the names of the headers of the table*/
+    table.headers = ["Name", "Zip Code", "Neighborhood", "Council District", "Police District", "Primary Location"];
+
+
+     /*variable to track which value to order by*/
+    table.orderByVar = {
+      availableOptions: [
+        {id: '0', display: 'name', ascending: true},
+        {id: '1', display: 'zipCode', ascending: true},
+        {id: '2', display: 'neighborhood', ascending: true},
+        {id: '3', display: 'councilDistrict', ascending: true},
+        {id: '4', display: 'policeDistrict', ascending: true},
+        {id: '5', display: 'primaryLocAddress', ascending: true},
+      ],
+      selectedOption: {id: '0', display: 'name', ascending: true} //This sets the default value of the select in the ui
+    };
+
     /*Function that changes orderByVar as needed to update view*/
-    home.myOrderBy = function(index) {
-        if(index == home.orderByVar.selectedOption.id) {
-            home.orderByVar.selectedOption.ascending = !home.orderByVar.selectedOption.ascending;
+    table.myOrderBy = function(index) {
+        if(index == table.orderByVar.selectedOption.id) {
+            table.orderByVar.selectedOption.ascending = !table.orderByVar.selectedOption.ascending;
         } else {
-          home.orderByVar.selectedOption = home.orderByVar.availableOptions[index];
+          table.orderByVar.selectedOption = table.orderByVar.availableOptions[index];
         }
     }
 
-    /*constructor for restraunt object */
-    function Restaurant(name, zip, rNeighborhood, cDistrict, pDistrict, primaryLoc) {
-        this.name = name;
-        this.zipCode = zip;
-        this.neighborhood = rNeighborhood;
-        this.councilDistrict = cDistrict;
-        this.policeDistrict = pDistrict;
-        this.primaryLocAddress = primaryLoc;
+  });
+
+
+
+
+
+
+  app.controller('GraphsController', function(restaurantService) {
+    /*variablle representing GraphsController*/
+    var graphs = this;
+
+    /*array of restaurant data*/
+    graphs.data = restaurantService.restaurants;
+
+    /*Object tracking which graph is to be loaded*/
+    graphs.graphOptions = {
+        availableOptions: [
+            {id:'0', display: 'Neighborhood', colName: 'neighborhood'},
+            {id:'1', display: 'Zip Code', colName: 'zipCode'},
+            {id:'2', display: 'Council District', colName: 'councilDistrict'},
+            {id:'3', display: 'Police District', colName: 'policeDistrict'}
+        ],
+        selectedOption: {id:'-1', display: 'N/A', colName: 'N/A'}
+    };
+
+
+    /*Object representing data source for graph*/
+    graphs.formattedData = {
+        chart: {
+            caption: "",
+            startingangle: "120",
+            showlabels: "0",
+            showlegend: "1",
+            enablemultislicing: "0",
+            slicingdistance: "1",
+            showpercentvalues: "1",
+            showpercentintooltip: "1",
+            theme: "fint"
+        },
+        data: []
+    };
+
+    /*Calculate the value associated with each neighborhood*/
+    graphs.calculateData = function(graphIndex) {
+        /*Change which option is selected*/
+        graphs.graphOptions.selectedOption = graphs.graphOptions.availableOptions[graphIndex];
+
+        /*Label of thing being counted (neighborhood, zip, etc.*/
+        var labels = [];
+        /*countOfLabels[i] is the number of occurrences of label labels[i]*/
+        var countOfLabels = [];
+
+        /*Set graph data to default*/
+        graphs.formattedData.data = [];
+        graphs.formattedData.chart.caption = "Percent of restaurants in each " + graphs.graphOptions.availableOptions[graphIndex].display;
+
+
+        /*for loop that counts each unique label*/
+        for(var i = 0; i < graphs.data.length; i++) {
+            /*Index corresponding to the label of the current element being looked at, -1 if label never seen before*/
+            var index = labels.indexOf(graphs.data[i][graphs.graphOptions.availableOptions[graphIndex].colName]);
+
+
+            if (index == -1) {
+                //if the label not seen before, add the label to the arry and set count = 1
+                labels.push(graphs.data[i][graphs.graphOptions.availableOptions[graphIndex].colName]); 
+                countOfLabels.push(1);
+            } else {
+                //otherwise increase the count from the corresponding label
+                countOfLabels[index]++;
+            }
+        }
+        
+        /*For loop that puts data in right format and adds it to the graph*/
+        for(var j = 0; j < labels.length; j++) {
+            graphs.formattedData.data.push({
+                label: labels[j],
+                value: countOfLabels[j].toString()
+            });
+        }
     }
 
-
-    /*Gets data from JSON file and loads it into $scope.restaurants */ 
-    $http.get('/data/Restaurants.json').then(function(success){
-
-      var arr = success.data.data;
-      var result = []
-
-      for(i = 0; i < arr.length; i++) {
-        var add = JSON.parse(arr[i][13][0])
-        result.push(new Restaurant(arr[i][8], arr[i][9], arr[i][10],
-          arr[i][11], arr[i][12], add.address + ' ' + add.city + ', ' + add.state));
-      }
-
-      $scope.restaurants = result;
-
-      
-    });
-
-    /*Displays charts with relevant data*/
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Work', home.graphFilter],
-        ['Eat',      2],
-        ['Commute',  2],
-        ['Watch TV', 2],
-        ['Sleep',    7]
-        ]);
-      var options = {
-        title: 'My Daily Activities'
-      };
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-      chart.draw(data, options);
-    }
-
-
-    
-  }]);
+  });
 
 
 })();

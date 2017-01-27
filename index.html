@@ -5,6 +5,10 @@
 	<link rel="stylesheet" type="text/css" href="/Styles/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/Styles/Style.css"/>
 	<link rel="stylesheet" type="text/css" href="/Styles/font-awesome.min.css">
+	<script type="text/javascript" src="/Scripts/angular.min.js"></script>
+	<script type="text/javascript" src="/Scripts/angular-fusioncharts.min.js"></script>
+	<script type="text/javascript" src="/Scripts/fusioncharts.js"></script>
+	<script type="text/javascript" src="/Scripts/app.js"></script>
 </head>
 <body ng-controller = "HomeController as home">
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -13,7 +17,7 @@
 	      		<a class="navbar-brand" href="#">Restaurants</a>
 	    	</div>
 
-      		<form class="navbar-form navbar-left" ng-show="!home.viewGraphs">
+      		<form ng-hide="home.viewGraphs" class="navbar-form navbar-left">
 				<div class="form-group">
 					<select class="form-control" ng-options="option.display for option in dropDownMenu.availableOptions track by option.id" ng-model="dropDownMenu.selectedOption" ng-click="home.clearSearch()"></select>
 				</div>
@@ -38,44 +42,62 @@
 				<button id="graphsButton" class="form-control" ng-click="home.viewGraphs = !home.viewGraphs">{{home.viewGraphs ? 'View Table': 'View Graphs'}}</button>
 				<br/>
 			</div>
-<!-- 			Start Table View -->
-			<div class="col-md-12" ng-show="!home.viewGraphs">
-				<table id="restaurantTable" class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th ng-repeat="option in home.orderByVar.availableOptions track by $index">
-								<button class="form-control" ng-class="{selected: $index == home.orderByVar.selectedOption.id}" ng-click="home.myOrderBy($index)">
-									<i class="fa" ng-class="{'fa-arrow-down': !option.ascending, 'fa-arrow-up': option.ascending}" aria-hidden="true"></i>
-								</button>
-							</th>
-						<tr>
-						<tr>
-							<th>Name</th>
-							<th>Zip code</th>
-							<th>Neighborhood</th>
-							<th>Council District</th>
-							<th>Police District</th>
-							<th>Primary Location</th>
-						<tr>
-					</thead>
-					<tr ng-repeat="restaurant in restaurants| filter: home.nameFilter | orderBy:(home.orderByVar.selectedOption.ascending?'+'+home.orderByVar.selectedOption.display:'-'+home.orderByVar.selectedOption.display)">
-						<td ng-repeat="attribute in restaurant">
-							{{attribute}}
-						</td>
-					</tr>
-				</table>
-			</div>
-<!-- 			End Table View -->
-
-<!-- 			Start Graph View -->
-			<div class="col-lg-12" ng-show="home.viewGraphs">
-				
-			</div>
-<!-- 			End Graph View -->
 		</div>
+<!-- 			Start Table View -->
+		<section ng-hide="home.viewGraphs">
+			<div ng-controller="TableController as table" class="row">
+				<div class="col-md-12">
+					<table id="restaurantTable" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th ng-repeat="option in table.orderByVar.availableOptions track by $index">
+									<button class="form-control" ng-class="{selected: $index == table.orderByVar.selectedOption.id}" ng-click="table.myOrderBy($index)">
+										<i class="fa" ng-class="{'fa-arrow-down': !option.ascending, 'fa-arrow-up': option.ascending}" aria-hidden="true"></i>
+									</button>
+								</th>
+							<tr>
+							<tr>
+								<th ng-repeat="header in table.headers">{{header}}</th>
+							<tr>
+						</thead>
+						<tr ng-repeat="restaurant in table.restaurants| filter: home.nameFilter | orderBy:(table.orderByVar.selectedOption.ascending?'+'+table.orderByVar.selectedOption.display:'-'+table.orderByVar.selectedOption.display)">
+							<td ng-repeat="attribute in restaurant">
+								{{attribute}}
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</section>
+<!-- 			End Table View -->
+		<section ng-show="home.viewGraphs">
+			<div ng-controller="GraphsController as graphs" class="row">
+				
+				<div ng-repeat="option in graphs.graphOptions.availableOptions track by $index" class="col-md-3">
+					<p><a class="btn btn-default" ng-class="{selected: $index == graphs.graphOptions.selectedOption.id}" ng-click="graphs.calculateData($index)">View {{option.display + " Statistics"}}</a></p>
+				</div>
+				<div ng-hide="graphs.graphOptions.selectedOption.id == -1">
+					<fusioncharts
+						width="600"
+						height="400"
+	   					type="pie3d"
+	   					dataSource="{{graphs.formattedData}}" >
+					</fusioncharts>
+				</div>
+			
+				<div ng-show="graphs.graphOptions.selectedOption.id == -1">
+					<h2>Restaurant Statistics</h2>
+					<p>On this portion of the applicaton, you can view statistics about where restaurants are in the Baltimore, show by percentage on pie graphs using Fusion Charts.
+					Neighborhood statistics show the percent of the total number of restaurants in each neighborhood. Same for zip code, council district, and police district.</p>
+				</div>
+
+			</div>	
+		</section>
+		
 	</div>
 
-	<script src="/Scripts/angular.min.js"></script>
-	<script src="/Scripts/app.js"></script>
+	
+
+	
 </body>
 </html>
