@@ -1,10 +1,11 @@
 # Baltimore Restaurants
 Author: Ryan Dens
+<br/>
 A basic web app displaying data restaurant data from Open Data Baltimore using AngularJS.
 <br/>
 [Data Source](https://data.baltimorecity.gov/Culture-Arts/Restaurants/k5ry-ef3g)
 
-#Setup
+# Setup
 Use your favorite Web Server application to host Baltimore Restaurants.
 
 One option is using npm. 
@@ -34,7 +35,7 @@ Alternativey, simply type the URL into your browswer
 
 
 
-I used[Fenix Web Server](http://www.fenixwebserver.com/) to get a server running. Open the 
+I used [Fenix Web Server](http://www.fenixwebserver.com/) to get a server running. Open the 
 application then click Web Servers > New. Give the project a descriptive name (perhaps, Baltimore 
 Restaurants Web App), put in the path to the root directory of the project (where index.html is located), 
 ensurethe suggested port is available, then click 'Create'. Start the web server by clicking 
@@ -46,14 +47,9 @@ on "Baltimore Restaurants Web App" or whichever name you gave your web server.
 Alternatively, use your favorite application for hosting webapps. 
 <br/>
 
-<h3>Shown below are images showing how to set up Fenix web server</h3>
-<img src="/Images/FenixStep1.png" width="700" />
-<img src="/Images/FenixStep2.png" width="280" />
-<img src="/Images/FenixStep3.png" width="280" />
-<img src="/Images/FenixStep4.png" width="280" />
 
 
-#How it works
+# How it works
 Currently, the application extracts the data from the JSON file from the data source,
 then displays that data in a table. This is done using AngularJS. I use $http.get()
 to load the data into an array. Then, I select only the columns from the JSON file that
@@ -63,11 +59,11 @@ Balitmore had an error in it–a negative zip code. So, I removed the negative s
 my JSON file. Those who get their data from the Open Baltimore should be mindful of this
 and posible other errors in the data set.
 
-#Styling
+# Styling
 I'm using Bootstrap 3 to give the site some of it's key stylistic features, such as the
 navbar, the jumbotron image, and the inputs in the form.
 
-#Features
+# Features
 <h3>Searching/Filtering</h3>
 Searching is done using the 'filter' filter. Using a drop down menu, pick the column you would 
 like to search for your key word in. Put a keyword, either the name of therestaurant, zip code, 
@@ -105,7 +101,7 @@ Finally, the address of the primary location in the table view is a google maps 
 
 
 
-#External Resources
+# External Resources
 [Bootstrap 3](http://getbootstrap.com/)
 As stated before, I used Bootstrap 3 to make the site more repsonsive. Note that I did not 
 use bootstrap.js, just bootstrap.min.css, located in /Styles/
@@ -123,7 +119,7 @@ Used for various icons, font-awesome.min.css is located in the 'Styles' folder. 
 
 
 
-#Demo
+# Demo
 Here is a demnonstration of the app in a GIF, recorded with [LiceCap](http://www.cockos.com/licecap/)
 <img src="/Images/demo.gif" width="600" />
 
